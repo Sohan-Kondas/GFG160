@@ -1,0 +1,18 @@
+Statement:
+Given an array of positive integers arr[], return the second largest element from the array. If the second largest element doesn't exist then return -1.
+class Solution:
+    def getSecondLargest(self, arr):
+        n=len(arr)
+        if n<2:
+            return -1
+        f=s=float('-inf')
+        for num in arr:
+            if num>f:
+                s=f
+                f=num
+            elif num>s and num!=f:
+                s=num
+        if s==float('-inf'):
+            return -1
+        else:
+            return s
