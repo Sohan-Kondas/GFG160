@@ -1,4 +1,4 @@
-//python code
+// Move All Zeroes To End
 class Solution:
   def pushZerosToEnd(self, arr):
       c=0
