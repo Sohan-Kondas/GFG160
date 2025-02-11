@@ -1,0 +1,21 @@
+//Print Anagrams Together
+class Solution {
+  public:
+    vector<vector<string>> anagrams(vector<string>& arr) {
+        // code here
+        unordered_map<string, vector<string>> m;        
+        for(string& s : arr) {
+            string sorWord=s;
+            sort(sorWord.begin(), sorWord.end());
+            if(!m.count(sorWord)) {
+                m[sorWord]=vector<string>();
+            }
+            m[sorWord].push_back(s);
+        }
+        vector<vector<string>> res;
+        for(auto& entry : m) {
+            res.push_back(entry.second);
+        }
+        return res;
+    }
+};
