@@ -1,0 +1,16 @@
+//Subarrays with sum K
+class Solution:
+    def countSubarrays(self, arr, k):
+        # code here
+        prS={}
+        r=0
+        crS=0
+        for v in arr:
+            crS+=v
+            if crS==k:
+                r+=1
+            if crS-k in prS:
+                r+=prS[crS-k]
+                
+            prS[crS]=prS.get(crS, 0)+1
+        return r
