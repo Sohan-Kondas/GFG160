@@ -1,0 +1,17 @@
+//Trapping Rain Water
+class Solution:
+    def maxWater(self, arr):
+        # code here
+        s=[]
+        r=0
+        for i in range(len(arr)):
+            while s and arr[s[-1]]<arr[i]:
+                ph=arr[s.pop()]
+                if not s:
+                    break
+                dis=i-s[-1]-1
+                w=min(arr[s[-1]], arr[i])
+                w-=ph
+                r+=dis*w
+            s.append(i)
+        return r
