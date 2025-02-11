@@ -1,0 +1,38 @@
+//Construct Tree from Inorder & Preorder
+/*
+class Node {
+    int data;
+    Node left, right;
+
+    Node(int key) {
+        data = key;
+        left = right = null;
+    }
+}
+*/
+
+class Solution {
+    static int p;
+    public static Node buildTree(int inorder[], int preorder[]) {
+        // code here
+        p=0;
+        return solve(inorder, preorder, 0, inorder.length-1);
+    }
+    static Node solve(int inorder[], int preorder[], int s, int e) {
+        if(s>inorder.length || s>e) {
+            return null;
+        }
+        Node r=new Node(preorder[p]);
+        int d=0;
+        for(int i=s; i<=e; i++) {
+            if(preorder[p]==inorder[i]) {
+                d=i;
+                break;
+            }
+        }
+        p++;
+        r.left=solve(inorder, preorder, s, d-1);
+        r.right=solve(inorder, preorder, d+1, e);
+        return r;
+    }
+}
