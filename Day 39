@@ -1,0 +1,12 @@
+//Search in a row-wise sorted matrix
+class Solution:
+    def searchRowMatrix(self, mat, x): 
+        # code here 
+        for row in mat:
+            for element in row:
+                if element == x:
+                    return True
+        return False
+        
+
+
