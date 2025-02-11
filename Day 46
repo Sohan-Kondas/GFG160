@@ -1,0 +1,6 @@
+//Union of Arrays with Duplicates
+class Solution:    
+    def findUnion(self, a, b):
+        # code here
+        union_set = set(a) | set(b) 
+        return len(union_set)
