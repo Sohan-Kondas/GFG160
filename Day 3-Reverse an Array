@@ -1,0 +1,7 @@
+class Solution:
+  def reverseArray(se1f, arr): 
+    n=len(arr)
+    for i in range(n//2): 
+      temp=arr[i]
+      arr[i]=arr[n-i-l] 
+      arr[n-i-l]=temp 
