@@ -1,0 +1,16 @@
+class Solution:
+  import math
+  def rotateArr(se1f, arr, d): 
+#Your code here 
+    n=len(arr) 
+    d%=n 
+    cycles=math.gcd(n, d) 
+    for i in range(cycles):
+      startE1e=arr[i] 
+      currldx=i 
+      while True: 
+        if nextldx==i: 
+          break 
+        arr[currldx]=arr[nextldx] 
+        currldx=nextldx 
+      arr[currIdx]=startEle
