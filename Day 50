@@ -1,0 +1,15 @@
+//Count Subarrays with given XOR
+class Solution:
+    def subarrayXor(self, arr, k):
+        # code here
+        r=0
+        m={}
+        pX=0
+        for v in arr:
+            pX^=v
+            r+=m.get(pX^k, 0)
+            if pX==k:
+                r+=1
+            m[pX]=m.get(pX, 0)+1
+            
+        return r
