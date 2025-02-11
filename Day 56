@@ -1,0 +1,20 @@
+//Indexes of Subarray Sum
+#User function Template for python3
+class Solution:
+    def subarraySum(self, arr, target):
+        # code here
+        s, e=0, 0
+        r=[]
+        c=0
+        for i in range(len(arr)):
+            c+=arr[i]
+            if c>=target:
+                e=i
+                while c>target and s<e:
+                    c-=arr[s]
+                    s+=1
+                if c==target:
+                    r.append(s+1)
+                    r.append(e+1)
+                    return r
+        return [-1]
