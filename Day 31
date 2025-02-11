@@ -1,0 +1,17 @@
+//Peak element
+
+class Solution:   
+    def peakElement(self,arr):
+        # Code here
+        n=len(arr)
+        for i in range(n):
+            l=True
+            r=True
+            if i>0 and arr[i]<=arr[i-1]:
+                l=False
+            if i<n-1 and arr[i]<=arr[i+1]:
+                r=False
+                
+            if l and r:
+                return i
+
