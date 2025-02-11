@@ -1,0 +1,29 @@
+//Word Search
+class Solution {
+    static public boolean isWordExist(char[][] mat, String w) {
+        // Code here
+        for(int i=0; i<mat.length; i++) {
+            for(int j=0; j<mat[0].length; j++) {
+                if(mat[i][j]==w.charAt(0)) {
+                    boolean[][] v=new boolean[mat.length][mat[0].length];
+                    if(check(mat, i, j, 0, w, v))
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
+    static boolean check(char[][] mat, int i, int j, int idx, String w, boolean[][] v) {
+        if(idx==w.length()) {
+            return true;
+        }
+        if(i<0 || j<0 || i>=mat.length || j>=mat[0].length || v[i][j] || mat[i][j]!=w.charAt(idx)) {
+            return false;
+        } 
+        v[i][j]=true;
+        if(check(mat, i, j-1, idx+1, w, v) || check(mat, i, j+1, idx+1, w, v) || check(mat, i+1, j, idx+1, w, v) || check(mat, i-1, j, idx+1, w, v))
+            return true;
+        v[i][j]=false;
+        return false;
+    }
+}
