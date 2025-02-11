@@ -1,0 +1,17 @@
+//Largest subarray of 0's and 1's
+class Solution:
+    def maxLen(self, arr):
+        # code here
+        m={}
+        ps=0
+        r=0
+        for i in range(len(arr)):
+            ps+=-1 if arr[i]==0 else 1
+            if ps==0:
+                r=i+1
+            if ps in m:
+                r=max(r, i-m[ps])
+            else:
+                m[ps]=i
+        return r
+
