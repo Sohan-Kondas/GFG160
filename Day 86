@@ -1,0 +1,59 @@
+//Tree Boundary Traversal
+/*
+class Node
+{
+    int data;
+    Node left, right;
+
+    public Node(int d)
+    {
+        data = d;
+        left = right = null;
+    }
+}
+*/
+
+class Solution {
+    ArrayList<Integer> boundaryTraversal(Node node) {
+        // code here
+        ArrayList<Integer> ans=new ArrayList();
+        if(node.left!=null || node.right!=null) {
+            ans.add(node.data);
+        }
+        lnodes(node.left, ans);
+        add(node, ans);
+        rnodes(node.right, ans);
+        return ans;
+    }
+    void lnodes(Node node, ArrayList<Integer> ans) {
+        if(node==null)
+            return;
+        if(node.left!=null) {
+            ans.add(node.data);
+            lnodes(node.left, ans);
+        } else if(node.right!=null) {
+            ans.add(node.data);
+            lnodes(node.right, ans);
+        }
+    }
+    void add(Node node, ArrayList<Integer> ans) {
+        if(node==null)
+            return;
+        add(node.left, ans);
+        if(node.left==null && node.right==null) {
+            ans.add(node.data);
+        }
+        add(node.right, ans);
+    }
+    void rnodes(Node node, ArrayList<Integer> ans) {
+        if(node==null)
+            return;
+        if(node.right!=null) {
+            rnodes(node.right, ans);
+            ans.add(node.data);
+        } else if(node.left!=null) {
+            rnodes(node.left, ans);
+            ans.add(node.data);
+        }
+    }
+}
