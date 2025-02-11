@@ -1,3 +1,4 @@
+//Rotate Array
 class Solution:
   import math
   def rotateArr(se1f, arr, d): 
