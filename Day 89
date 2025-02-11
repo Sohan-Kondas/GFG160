@@ -1,0 +1,27 @@
+//Check for BST
+
+class Solution:
+    def isBST(self, root):
+        #code here
+        c=root
+        pv=float('-inf')
+        while c:
+            if c.left is None:
+                if c.data<=pv:
+                    return False
+                pv=c.data
+                c=c.right
+            else:
+                pre=c.left
+                while pre.right and pre.right!=c:
+                    pre=pre.right
+                if pre.right is None:
+                    pre.right=c
+                    c=c.left
+                else:
+                    pre.right=None
+                    if c.data<=pv:
+                        return False
+                    pv=c.data
+                    c=c.right
+        return True
