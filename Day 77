@@ -1,0 +1,38 @@
+//N-Queen Problem
+
+class Solution {
+  public:
+    vector<vector<int>> nQueen(int n) {
+        // code here
+        vector<bool> c(n, false);
+        vector<bool> nd(2*n-1, false);
+        vector<bool> rd(2*n-1, false);
+        vector<vector<int>> r;
+        vector<int> t;
+        solve(n, 0, c, nd, rd, r, t);
+        return r;
+    }
+    
+  private:
+    void solve(int n, int cr, vector<bool>& c, vector<bool>& nd, vector<bool>& rd, vector<vector<int>>& r, vector<int>& t) {
+        if (cr==n) {
+            r.push_back(t);
+            return;
+        }
+        for(int i=0; i<n; i++) {
+            if(!c[i] && !nd[cr+i] && !rd[cr-i+n-1]) {
+                t.push_back(i+1);
+                c[i]=true;
+                nd[cr+i]=true;
+                rd[cr-i+n-1]=true;
+                
+                solve(n, cr+1, c, nd, rd, r, t);
+                
+                t.pop_back();
+                c[i]=false;
+                nd[cr+i]=false;
+                rd[cr-i+n-1]=false;
+            }
+        }
+    }
+};
