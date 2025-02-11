@@ -1,0 +1,26 @@
+//Count distinct elements in every window
+class Solution {
+  public:
+  #include <iostream>
+  #include <vector>
+  #include <unordered_map>
+    vector<int> countDistinct(vector<int> &arr, int k) {
+        // code here.
+        int n=arr.size();
+        vector<int> r;
+        unordered_map<int, int> f;
+        for(int i=0; i<k; i++) 
+            f[arr[i]]+=1;
+            
+        r.push_back(f.size());
+        for(int i=k; i<n; i++) {
+            f[arr[i]]+=1;
+            f[arr[i-k]]-=1;
+            if(f[arr[i-k]]==0)
+                f.erase(arr[i-k]);
+                
+            r.push_back(f.size());
+        }
+        return r;
+    }
+};
