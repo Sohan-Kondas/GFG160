@@ -1,0 +1,40 @@
+//Linked List Group Reverse
+"""Node is defined as
+
+class Node:
+    def __init__(self, data):
+		self.data = data
+		self.next = None
+"""
+class Solution:
+    def reverseKGroup(self, head, k):
+        # Code here
+        if head is None:
+            return head
+        c=head
+        nh=None
+        tail=None
+        while c is not None:
+            gh=c
+            prev=None
+            nxNode=None
+            cn=0
+            while c is not None and cn<k:
+                nxNode=c.next
+                c.next=prev
+                prev=c
+                c=nxNode
+                cn+=1
+            if nh is None:
+                nh=prev
+            if tail is not None:
+                tail.next=prev
+            tail=gh
+        return nh
+    
+    def printList(head):
+        c=head
+        while c is not None:
+            print(c.data, end=" ")
+            c=c.next
+        print()
