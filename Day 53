@@ -1,0 +1,26 @@
+//Sum Pair closest to target
+class Solution {
+    public List<Integer> sumClosest(int[] arr, int target) {
+        // code here
+        Arrays.sort(arr);
+        List<Integer> r=new ArrayList<>();
+        int l=0, h=arr.length-1;
+        int m=Integer.MAX_VALUE;
+        while(l<h) {
+            int s=arr[l]+arr[h];
+            if(Math.abs(target-s)<m) {
+                m=Math.abs(target-s);
+                r.clear();
+                r.add(arr[l]); r.add(arr[h]);
+            }
+            if(s<target) {
+                l++;
+            } else if(s>target) {
+                h--;
+            } else {
+                return r;
+            }
+        }
+        return r;
+    }
+}
