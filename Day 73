@@ -1,0 +1,35 @@
+//Remove loop in Linked List
+'''
+# node class:
+
+class Node:
+    def __init__(self,val):
+        self.next=None
+        self.data=val
+
+'''
+
+class Solution:
+    #Function to remove a loop in the linked list.
+    def removeLoop(self, head):
+        # code here
+        if head is None or head.next is None:
+            return
+        s=f=head
+        while s and f and f.next:
+            s=s.next
+            f=f.next.next
+            if s==f:
+                s=head
+                while s!=f:
+                    s=s.next
+                    f=f.next
+                while f.next!=s:
+                    f=f.next
+                f.next=None
+    
+    def printList(c):
+        while c:
+            print(c.data, end=" ")
+            c=c.next
+        print()
