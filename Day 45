@@ -1,0 +1,8 @@
+//Intersection of Two arrays with Duplicate Elements
+class Solution:
+    def intersectionWithDuplicates(self, a, b):
+        # code here
+        set_a = set(a)
+        set_b = set(b)
+        result = set_a.intersection(set_b)
+        return sorted(result)
