@@ -1,4 +1,4 @@
-  
+//Majority Element II
 class Solution: 
   def findMajority(se1f, arr):
     n=len(arr) 
