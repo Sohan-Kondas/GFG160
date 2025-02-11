@@ -1,0 +1,14 @@
+//Equilibrium Point
+class Solution:
+    def findEquilibrium(self, arr):
+        # code here
+        ps=0
+        t=sum(arr)
+        for p in range(len(arr)):
+            ss=t-ps-arr[p]
+            if ps==ss:
+                return p
+            ps+=arr[p]
+        return -1
+
+
