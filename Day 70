@@ -1,0 +1,56 @@
+//Clone List with Next and Random
+#User function Template for python3
+
+'''
+class Node:
+    def __init__(self, data):   # data -> value stored in node
+        self.data = data
+        self.next = None
+        self.random=None
+        
+param: head:  head of linkedList to copy
+return: the head of the copied linked list the #output will be 1 if successfully copied
+'''
+class Solution:
+    #Function to clone a linked list with next and random pointer.
+    def cloneLinkedList(self, head):
+        # code here
+        if head is None:
+            return None
+        c=head
+        while c is not None:
+            n=Node(c.data)
+            n.next=c.next
+            c.next=n
+            c=n.next
+        c=head
+        while c is not None:
+            if c.random is not None:
+                c.next.random=c.random.next
+            c=c.next.next
+        c=head
+        ch=head.next
+        cl=ch
+        while cl.next is not None:
+            c.next=c.next.next
+            cl.next=cl.next.next
+            c=c.next
+            cl=cl.next
+        c.next=None
+        cl.next=None
+        return ch
+        
+    def printList(head):
+        while head is not None:
+            print(f"{head.data}(", end="")
+            if head.random:
+                print(f"{head.random.data}(", end="")
+            else:
+                print("null)", end="")
+            if head.next is not None:
+                print(" -> ", end="")
+            head=head.next
+        print()
+            
+    
+
