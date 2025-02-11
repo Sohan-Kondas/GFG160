@@ -1,0 +1,10 @@
+//Kadane's Algorithm
+def maxSubarraySum(arr):
+    
+    res = me=arr[0]
+
+    for i in range(1, len(arr)):
+        me = max(me + arr[i], arr[i])
+        res = max(res, me)
+    
+    return res
