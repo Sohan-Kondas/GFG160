@@ -1,0 +1,29 @@
+//Inorder Traversal
+
+/* A Binary Tree node
+
+class Node {
+    int data;
+    Node left, right;
+   Node(int item)    {
+        data = item;
+        left = right = null;
+    }
+}
+*/
+class Solution {
+    // Function to return a list containing the inorder traversal of the tree.
+    ArrayList<Integer> inOrder(Node root) {
+        // Code
+        ArrayList<Integer> a= new ArrayList();
+        solve(root, a);
+        return a;
+    }
+    void solve(Node root, ArrayList<Integer> a) {
+        if(root==null)
+            return;
+        solve(root.left, a);
+        a.add(root.data);
+        solve(root.right, a);
+    }
+}
