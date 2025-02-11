@@ -1,0 +1,44 @@
+//LRU Cache
+class Node:
+    def __init__(self, key, val):
+        self.key, self.val=key, val
+        prev=next=None
+class LRUCache:
+      
+    #Constructor for initializing the cache capacity with the given value.  
+    def __init__(self, cap):
+        #code here
+        self.cap=cap
+        self.cache={}
+        self.l, self.r=Node(0, 0), Node(0, 0)
+        self.l.next, self.r.prev=self.r, self.l
+        
+    def remove(self, node):
+        prev, next=node.prev, node.next
+        prev.next, next.prev=next, prev
+    
+    def insert(self, node):
+        prev, next=self.r.prev, self.r
+        prev.next=next.prev=node
+        node.next, node.prev= next, prev
+        
+        
+    #Function to return value corresponding to the key.
+    def get(self, key):
+        #code here
+        if key in self.cache:
+            self.remove(self.cache[key])
+            self.insert(self.cache[key])
+            return self.cache[key].val
+        return -1
+    #Function for storing key-value pair.   
+    def put(self, key, value):
+        #code here
+        if key in self.cache:
+            self.remove(self.cache[key])
+        self.cache[key]=Node(key, value)
+        self.insert(self.cache[key])
+        if len(self.cache)>self.cap:
+            lru=self.l.next
+            self.remove(lru)
+            del self.cache[lru.key]
