@@ -1,0 +1,9 @@
+class Solution:
+  def maxProfit(p):
+    m = p[0]
+    res = 0
+    for i in range(1, len(p)):
+        m = min(m, p[i])              
+        res = max(res, p[i] - m)
+    
+    return res
