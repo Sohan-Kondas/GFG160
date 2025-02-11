@@ -1,0 +1,20 @@
+//Product array puzzle
+class Solution:
+    def productExceptSelf(self, arr):
+        #code here
+        z=0
+        idx=-1
+        p=1
+        for i in range(len(arr)):
+            if arr[i]==0:
+                z+=1
+                idx=i
+            else:
+                p*=arr[i]
+        r=[0]*len(arr)
+        if z==0:
+            for i in range(len(arr)):
+                r[i]=p//arr[i]
+        elif z==1:
+            r[idx]=p
+        return r
