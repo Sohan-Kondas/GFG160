@@ -1,0 +1,74 @@
+//Add Number Linked Lists
+/* node for linked list
+
+class Node {
+    int data;
+    Node next;
+
+    Node(int d) {
+        data = d;
+        next = null;
+    }
+}
+
+*/
+
+class Solution {
+    static Node addTwoLists(Node num1, Node num2) {
+        // code here
+        if(num1==null) {
+            return num2;
+        } else if(num2==null) {
+            return num1;
+        }
+        Node p1=reverse(num1);
+        Node p2=reverse(num2);
+        int c=0;
+        Node ans=null;
+        while(p1!=null || p2!=null) {
+            int v1=p1!=null ? p1.data : 0;
+            int v2=p2!=null ? p2.data : 0;
+            int s=v1+v2+c;
+            c=s/10;
+            int d=s%10;
+            Node n=new Node(d);
+            if (ans==null) {
+                ans=n;
+            } else {
+                n.next=ans;
+                ans=n;
+            } 
+            p1=p1!=null ? p1.next : null;
+            p2=p2!=null ? p2.next : null;
+        }
+        if(c>0) {
+            Node n=new Node(c);
+            if(ans==null) {
+                ans=n;
+            } else {
+                n.next=ans;
+                ans=n;
+            }
+        }
+        Node t=ans;
+        while(t!=null && t.data==0) {
+            t=t.next;
+        }
+        if(t==null) {
+            return new Node(0);
+        }
+        return t;
+    }
+    static Node reverse(Node head) {
+        Node curr=head;
+        Node prev=null;
+        Node next=null;
+        while(curr!=null) {
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        return prev;
+    }
+}
