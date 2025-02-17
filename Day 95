@@ -1,0 +1,15 @@
+//k largest elements
+import heapq
+class Solution:
+    def kLargest(self, arr, k):
+        # Your code here
+        mh=arr[:k]
+        heapq.heapify(mh)
+        for x in arr[k:]:
+            if x>mh[0]:
+                heapq.heapreplace(mh, x)
+        r=[]
+        while mh:
+            r.append(heapq.heappop(mh))
+        r.reverse()
+        return r
