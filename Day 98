@@ -1,0 +1,20 @@
+//Find median in a data stream
+import heapq
+class Solution:
+    def getMedian(self, arr):
+        lmh=[]
+        rmh=[]
+        res=[]
+        for n in arr:
+            heapq.heappush(lmh, -n)
+            t=-heapq.heappop(lmh)
+            heapq.heappush(rmh, t)
+            if len(rmh) > len(lmh):
+                t=heapq.heappop(rmh)
+                heapq.heappush(lmh, -t)
+            if len(lmh)!=len(rmh):
+                m=-lmh[0]
+            else:
+                m=(-lmh[0]+rmh[0]) / 2.0
+            res.append(m)
+        return res
