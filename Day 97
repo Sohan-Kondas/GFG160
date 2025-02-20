@@ -1,0 +1,33 @@
+//Merge K sorted linked lists
+#User function Template for python3
+'''
+import heapq
+class Node:
+    def _init_(self,x):
+        self.data = x
+        self.next = None
+'''
+class Solution:
+    def mergeKLists(self, arr):
+        # code here
+        # return head of merged list
+        pq=[]
+        for i in range(0, len(arr)):
+            head=arr[i]
+            if head is not None:
+                heapq.heappush(pq, (head.data, i, head))
+        dm=Node(-1)
+        t=dm
+        while pq:
+            _, idx, top=heapq.heappop(pq)
+            t.next=top
+            t=top
+            if top.next is not None:
+                heapq.heappush(pq, (top.next.data, idx, top.next))
+        return dm.next
+        
+    def printList(node):
+        while node is not None:
+            print(node.data, end=" ")
+            node=node.next
+                
