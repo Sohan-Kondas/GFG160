@@ -1,0 +1,34 @@
+//Longest valid parenthesis
+
+class Solution:
+    def maxLength(self, s):
+        # code here
+        maxLen = 0
+        open = close = 0
+        for ch in s:
+            if ch == '(':
+                open += 1
+            elif ch == ')':
+                close += 1
+        
+            if open == close:
+                maxLen = max(maxLen, 2 * close)
+            elif close > open:
+                open = close = 0
+    
+    # Right to Left Traversal
+        open = close = 0
+        for ch in reversed(s):
+            if ch == '(':
+                open += 1
+            elif ch == ')':
+                close += 1
+        
+            if open == close:
+                maxLen = max(maxLen, 2 * open)
+            elif open > close:
+                open = close = 0
+    
+        return maxLen
+
+    
