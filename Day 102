@@ -1,0 +1,16 @@
+//Stock span problem
+class Solution:
+    def calculateSpan(self, arr):
+        #write code here
+        n=len(arr)
+        sp=[0]*n
+        stk=[]
+        for i in range(n):
+            while stk and arr[stk[-1]]<=arr[i]:
+                stk.pop()
+            if not stk:
+                sp[i]=(i+1)
+            else:
+                sp[i]=(i-stk[-1])
+            stk.append(i)
+        return sp
