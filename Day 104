@@ -1,0 +1,28 @@
+//Maximum of minimum for every window size
+
+class Solution:
+    def maxOfMins(self, arr):
+       # code here
+        n=len(arr)
+        r=[0]*n
+        s=[]
+        la=[0]*n
+        for i in range(n):
+            while s and arr[s[-1]]>=arr[i]:
+                t=s.pop()
+                ws=i if not s else i-s[-1]-1
+                la[t]=ws
+            s.append(i)
+        while s:
+            t=s.pop()
+            ws=n if not s else n-s[-1]-1
+            la[t]=ws
+            
+        for i in range(n):
+            ws=la[i]-1
+            r[ws]=max(r[ws], arr[i])
+        
+        for i in range(n-2, -1, -1):
+            r[i]=max(r[i], r[i+1])
+        
+        return r
