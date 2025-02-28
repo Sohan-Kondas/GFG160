@@ -1,0 +1,23 @@
+//Evaluation of Postfix Evaluation
+
+import math
+class Solution:
+    def evaluate(self, arr):
+        # code here
+        stk=[]
+        for tk in arr:
+            if tk.lstrip('-').isdigit():
+                stk.append(int(tk))
+            else:
+                v1=stk.pop()
+                v2=stk.pop()
+                if tk=='+':
+                    stk.append(v2+v1)
+                elif tk=='-':
+                    stk.append(v2-v1)
+                elif tk=='*':
+                    stk.append(v2*v1)
+                elif tk=='/':
+                    stk.append(math.trunc(v2/v1))
+                    
+        return stk.pop()
