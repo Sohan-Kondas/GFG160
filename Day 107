@@ -1,0 +1,22 @@
+//Decode the String
+
+class Solution:
+    def decodedString(self, s):
+        # code here
+        res=""
+        for i in range(len(s)):
+            if s[i]!=']':
+                res+=s[i]
+            else:
+                t=""
+                while res and res[-1]!='[':
+                    t=res[-1]+t
+                    res=res[:-1]
+                res=res[:-1]
+                n=""
+                while res and res[-1].isdigit():
+                    n=res[-1]+n
+                    res=res[:-1]
+                p=int(n)
+                res+=t*p
+        return res
