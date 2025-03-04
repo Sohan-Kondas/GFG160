@@ -1,0 +1,22 @@
+//Longest Increasing Subsequence
+class Solution:
+    def lis(self, arr):
+        # code here
+        n=len(arr)
+        res=[]
+        res.append(arr[0])
+        for i in range(1, n):
+            if arr[i]>res[-1]:
+                res.append(arr[i])
+            else:
+                l=0
+                h=len(res)-1
+                while l<h:
+                    m=l+(h-l)//2
+                    if res[m]<arr[i]:
+                        l=m+1
+                    else:
+                        h=m
+                res[l]=arr[i]
+        return len(res)
+        
