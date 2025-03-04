@@ -1,0 +1,26 @@
+//Longest Bounded-Difference Subarray
+from collections import deque
+class Solution:
+    def longestSubarray(self, arr, x):
+        mnq=deque()
+        mxq=deque()
+        n=len(arr)
+        s, e=0, 0
+        rs, re=0, 0
+        while e<n:
+            while mnq and arr[mnq[-1]]>arr[e]:
+                mnq.pop()
+            while mxq and arr[mxq[-1]]<arr[e]:
+                mxq.pop()
+            mnq.append(e)
+            mxq.append(e)
+            while arr[mxq[0]]-arr[mnq[0]]>x:
+                if s==mnq[0]:
+                    mnq.popleft()
+                if s==mxq[0]:
+                    mxq.popleft()    
+                s+=1
+            if e-s>re-rs:
+                rs, re=s, e
+            e+=1
+        return arr[rs:re+1]
