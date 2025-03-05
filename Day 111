@@ -1,0 +1,18 @@
+//Longest String Chain
+
+#User function Template for python3
+
+class Solution:
+    def longestStringChain(self, words):
+        # Code here
+        words.sort(key=len)
+        dp={}
+        r=1
+        for w in words:
+            dp[w]=1
+            for i in range(len(w)):
+                pr=w[:i]+w[i+1:]
+                if pr in dp:
+                    dp[w]=max(dp[w], dp[pr]+1)
+            r=max(r, dp[w])
+        return r
