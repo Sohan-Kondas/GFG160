@@ -1,0 +1,24 @@
+//Longest Palindromic Subsequence
+
+// User function Template for C++
+
+class Solution {
+  public:
+    int longestPalinSubseq(string &s) {
+        // code here
+        int n=s.size();
+        vector<int> cur(n), pr(n);
+        for(int i=n-1; i>=0; i--) {
+            cur[i]=1;
+            for(int j=i+1; j<n; ++j) {
+                if(s[i]==s[j]) {
+                    cur[j]=pr[j-1]+2;
+                } else {
+                    cur[j]=max(pr[j], cur[j-1]);
+                } 
+            }
+            pr=cur;
+        }
+        return cur[n-1];
+    }
+};
