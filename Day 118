@@ -1,0 +1,14 @@
+//Min Cost Climbing Stairs
+class Solution:
+    def minCostClimbingStairs(self, cost):
+        #Write your code here
+        n=len(cost)
+        if n==1:
+            return cost[0]
+        p2=cost[0]
+        p1=cost[1]
+        for i in range(2, n):
+            cur=cost[i]+min(p1, p2)
+            p2=p1
+            p1=cur
+        return min(p1, p2)
