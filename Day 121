@@ -1,0 +1,19 @@
+//Coin Change (Minimum Coins)
+class Solution:
+	def minCoins(self, coins, sum):
+		# code here
+        dp=[float('inf')]*(sum+1)
+        dp[0]=0
+        for i in range(len(coins)-1, -1, -1):
+            for j in range(1, sum+1):
+                t=float('inf')
+                nt=float('inf')
+                if j-coins[i]>=0 and coins[i]>0:
+                    t=dp[j-coins[i]]
+                    if t!=float('inf'):
+                        t+=1
+                if i+1<len(coins):
+                    nt=dp[j]
+                dp[j]=min(t, nt)
+        
+        return dp[sum] if dp[sum]!=float('inf') else -1
