@@ -1,0 +1,20 @@
+// Minimum Jumps
+class Solution:
+	def minJumps(self, arr):
+	    # code here
+        n=len(arr)
+        if arr[0]==0:
+            return -1
+        mr, cr=0, 0
+        jp=0
+        for i in range(n):
+            mr=max(mr, i+arr[i])
+            if mr>=n-1:
+                return jp+1
+            if i==cr:
+                if i==mr:
+                    return -1
+                else:
+                    jp+=1
+                    cr=mr
+        return -1
