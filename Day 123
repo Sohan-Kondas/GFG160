@@ -1,0 +1,15 @@
+// Subset Sum
+class Solution:
+    def isSubsetSum (self, arr, sum):
+        # code here 
+        n=len(arr)
+        p, c= [False]*(sum+1), [False]*(sum+1)
+        p[0]=True
+        for i in range(1, n+1):
+            for j in range(sum+1):
+                if j<arr[i-1]:
+                    c[j]=p[j]
+                else:
+                    c[j]=p[j] or p[j-arr[i-1]]
+            p=c.copy()
+        return p[sum]    
