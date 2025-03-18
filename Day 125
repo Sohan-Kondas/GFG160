@@ -1,0 +1,15 @@
+// Stock Buy and Sell- Max K Transactions Allowed
+class Solution:
+    def maxProfit(self, prices, k):
+        # code here
+        n=len(prices)
+        if n==0 or k==0:
+            return 0
+        c, nt=[[0]*2 for _ in range(k+1)], [[0]*2 for _ in range(k+1)]
+        for i in range(n-1, -1, -1):
+            for j in range(1, k+1):
+                c[j][1]=max(-prices[i]+nt[j][0], nt[j][1])
+                c[j][0]=max(prices[i]+nt[j-1][1], nt[j][0])
+            nt=[row[:] for row in c]
+            
+        return c[k][1]
