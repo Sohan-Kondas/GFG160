@@ -1,0 +1,14 @@
+// Stock Buy and Sell – Max 2 Transactions Allowed
+class Solution:
+    def maxProfit(self, prices):
+        # code here
+        fb=float('-inf')
+        fs=0
+        sb=float('-inf')
+        ss=0
+        for i in range(len(prices)):
+            fb=max(fb, -prices[i])
+            fs=max(fs, fb+prices[i])
+            sb=max(sb, fs-prices[i])
+            ss=max(ss, sb+prices[i])
+        return ss
