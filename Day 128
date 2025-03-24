@@ -1,0 +1,13 @@
+// Stickler Thief II
+class Solution:
+    def maxValue(self, a):
+        # code here
+        n=len(a)
+        if n==1:
+            return arr[0]
+        def rob(b, x, y):
+            i, j=0, 0
+            for k in range(x, y):
+                 i, j=j, max(j, i+b[k])
+            return j
+        return max(rob(a, 0, n-1), rob(a, 1, n))
