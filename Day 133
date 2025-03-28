@@ -1,0 +1,18 @@
+// Minimum Platforms
+class Solution:    
+    #Function to find the minimum number of platforms required at the
+    #railway station such that no train waits.
+    def minimumPlatform(self,arr,dep):
+        # code here
+        c=0
+        mp=0
+        mdt=max(dep)
+        v=[0]*(mdt+2)
+        for i in range(len(arr)):
+            v[arr[i]]+=1
+            v[dep[i]+1]-=1
+        for i in range(mdt+2):
+            c+=v[i]
+            mp=max(mp, c)
+        
+        return mp
