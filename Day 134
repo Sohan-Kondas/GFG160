@@ -1,0 +1,16 @@
+// Activity Selection
+import heapq
+class Solution:
+    def activitySelection(self, start, finish):
+        #code here
+        ans=0
+        p=[]
+        for i in range(len(start)):
+            heapq.heappush(p, (finish[i], start[i]))
+        ft=-1
+        while p:
+            act=heapq.heappop(p)
+            if act[1]>ft:
+                ft=act[0]
+                ans+=1
+        return ans
