@@ -1,0 +1,15 @@
+// Max Partitions in a String
+class Solution:
+    def maxPartitions(self , s):
+        # code here
+        f, l=[-1]*26, [-1]*26
+        for i in range(len(s)):
+            if f[ord(s[i])-ord('a')]==-1:
+                f[ord(s[i])-ord('a')]=i
+            l[ord(s[i])-ord('a')]=i
+        c, e=0, 0
+        for i in range(len(s)):
+            e=max(e, l[ord(s[i])-ord('a')])
+            if i==e:
+                c+=1
+        return c
