@@ -1,0 +1,22 @@
+// BFS of Graph
+class Solution:
+    # Function to return Breadth First Search Traversal of given graph.
+    def bfs(self, adj):
+        # code here
+        v=len(adj)
+        res=[]
+        s=0
+        from collections import deque
+        q=deque()
+        vis=[False]*v
+        vis[s]=True
+        q.append(s)
+        while q:
+            curr=q.popleft()
+            res.append(curr)
+            for x in adj[curr]:
+                if not vis[x]:
+                    vis[x]=True
+                    q.append(x)
+                    
+        return res
