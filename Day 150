@@ -1,0 +1,38 @@
+// Account Merge
+class Solution {
+  public:
+    void dfs(vector<string> &acc, string &email, unordered_set<string> &vis, unordered_map<string, vector<string>> &adj) {
+        vis.insert(email);
+        acc.push_back(email);
+        for(string &x : adj[email]) {
+            if(vis.find(x)==vis.end()) {
+                dfs(acc, x, vis, adj);
+            }
+        }
+    }
+    vector<vector<string>> accountsMerge(vector<vector<string>> &accounts) {
+        // code here
+        unordered_map<string, vector<string>> adj;
+        unordered_set<string> vis;
+        for(vector<string> &i : accounts) {
+            string fm=i[1];
+            for(int j=2; j<i.size(); j++) {
+                string email=i[j];
+                adj[fm].push_back(email);
+                adj[email].push_back(fm);
+            }
+        }
+        vector<vector<string>> a;
+        for(vector<string> &i : accounts) {
+            string accn=i[0];
+            string fm=i[1];
+            if(vis.find(fm)==vis.end()) {
+                vector<string> acc;
+                acc.push_back(accn);
+                dfs(acc, fm, vis, adj);
+                a.push_back(acc);
+            }
+        }
+        return a;
+    }
+};
