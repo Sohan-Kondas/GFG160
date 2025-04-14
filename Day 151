@@ -1,0 +1,42 @@
+// Clone an Undirected Graph
+// User function Template for C++
+
+// struct Node {
+//     int val;
+//     vector<Node*> neighbors;
+//     Node() {
+//         val = 0;
+//         neighbors = vector<Node*>();
+//     }
+//     Node(int _val) {
+//         val = _val;
+//         neighbors = vector<Node*>();
+//     }
+//     Node(int _val, vector<Node*> _neighbors) {
+//         val = _val;
+//         neighbors = _neighbors;
+//     }
+// };
+
+class Solution {
+  public:
+    Node* cloneGraph(Node* node) {
+        // code here
+        if (!node) return nullptr;
+        unordered_map<Node*, Node*> cm;
+        return dfs(node, cm);
+    }
+    
+  private:
+    Node* dfs(Node* node, unordered_map<Node*, Node*>& cm) {
+        if(cm.find(node)!=cm.end()) {
+            return cm[node];
+        }
+        Node* cn=new Node(node->val);
+        cm[node]=cn;
+        for(Node* neighbor : node->neighbors) {
+            cn->neighbors.push_back(dfs(neighbor, cm));
+        }
+        return cn;
+    }
+};
