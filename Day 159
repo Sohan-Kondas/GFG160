@@ -1,0 +1,6 @@
+// Unique Number I
+def UniqueNum(self, arr):
+  res=0
+  for num in arr:
+    res^=num
+  return res
